@@ -1,0 +1,37 @@
+$ bun run scripts/e2e-finality.ts
+deploying revised contract…
+deployed at 0x0CF5eB453F865ab5691D1E8D2ED2Eaf18f2B7bF2 tx 0x0038f7b63faac860cc395fd602678d837eb989c2de0615a0735709ad3624ae77
+PASS  policy is published on-chain  "permissionless-verifier: any wallet may trigger verification; verdict authored by validator consensus, not by the caller; finalization is one-shot, immutable and attributed to the calling wallet"
+PASS  submission stored  {"total":1,"id":"0"}
+PASS  submission starts unfinalized
+finalizing from a different wallet (permissionless)…
+PASS  is_finalized view reports FINALIZED state
+verdict: {
+  "verified": false,
+  "confidence": 0.5,
+  "matched_claims": [
+    "Created the Linux kernel in 1991",
+    "authored the Git version control system"
+  ],
+  "unsupported_claims": [
+    "Served as CEO of ACME Payments"
+  ],
+  "summary": "While the candidate's creation of Linux and Git is well-documented in the provided GitHub and Wikipedia records, there is no evidence supporting the claim that he served as CEO of ACME Payments; in fact, the evidence lists his employer as the Linux Foundation."
+}
+PASS  permissionless caller could finalize
+PASS  verifier wallet attributed  "0x4330254E2508Bdfa74aBeeC9DC418AdEA9FCc7e5"
+PASS  submitter recorded separately
+PASS  verified is boolean
+PASS  confidence quantized to 0.1 steps in 0..1  0.5
+PASS  confidence consistent with verdict
+PASS  claim arrays present and sorted
+PASS  at least one claim classified
+PASS  no claim classified both ways
+PASS  summary non-empty
+attempting a second finalization (must be rejected)…
+PASS  second finalization rejected (one-shot finality)  "{\"execution_result\":\"ERROR\",\"result\":{\"status\":\"rollback\",\"payload\":\"Submission already finalized; verdicts are immutable\"}}"
+PASS  verdict unchanged after re-attempt (immutable)
+
+contract: 0x0CF5eB453F865ab5691D1E8D2ED2Eaf18f2B7bF2
+submission: 0
+exit: 0
